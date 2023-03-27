@@ -31,8 +31,8 @@
         </div>
         <div class="content">
             <h1>WELCOME <br><span>TO</span> <br>SHIFT</h1>
-            <p class="par">***
-                <br> ***
+            <p class="par">
+                <br>
             </p>
 
             <button class="cn"><a href="#">REFRESH</a></button>
