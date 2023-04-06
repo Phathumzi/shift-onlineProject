@@ -1,0 +1,8 @@
+1. Open 3 terminals
+2. Run the server.py file on terminal 1
+3. Run the client.py file on terminal 2 (this is player 1)
+4. Run the client.py file on terminal 3 (this is player 2)
+5. On terminal 2, type in a message and press enter (this simulates player 1 making a move)
+6. On terminal 3, type in a message and press enter (this simulates player 2 making a move)
+
+if player 1 tries to type a message on the terminal while it is not his turn "nothing" will happen (same goes for player 2)
