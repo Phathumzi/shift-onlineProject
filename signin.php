@@ -16,7 +16,7 @@ if ($conn->connect_error) {
     $stmt = $conn->prepare("insert into users(username,email,password) values (?,?,?)");
     $stmt->bind_param("sss", $username, $email, $password);
     $stmt->execute();
-    header("Location: homePage.php");
+    header("Location: signin.html");
     $stmt->close();
     $conn->close();
 }
