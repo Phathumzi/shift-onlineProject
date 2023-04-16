@@ -36,8 +36,7 @@ if (!isset($user_id)) {
             </div>
 
             <div class="search">
-                <input class="srch" type="search" name="" placeholder="search">
-                <a href="#"> <button class="btn">Search</button></a>
+                <button type="button" class="btn btn-light" color=#fff><a href="logOUT.php">Logout</a></button>
             </div>
 
         </div>
