@@ -11,8 +11,8 @@ if (isset($_POST['Account'])) {
 
     mysqli_query($conn, "UPDATE heroku_63291ad8f31606c.users SET username = '$update_name', email = '$update_email' WHERE userid = '$userid'") or die('query failed');
 
-    $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-    $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
+    $new_pass = mysqli_real_escape_string($conn, $_POST['new_pass']);
+    $confirm_pass = mysqli_real_escape_string($conn, $_POST['confirm_pass']);
 
     if (!empty($new_pass) || !empty($confirm_pass)) {
         if ($new_pass != $confirm_pass) {
@@ -42,9 +42,10 @@ if (isset($_POST['Account'])) {
         <div class="navbar">
             <div class="menu">
                 <ul>
-                    <li><a href="/watch.php">WATCH</a></li>
+                    <li><a href="/watch.php">SPECTATE</a></li>
+                    <li> <a href="">MY PAST GAMES</a></li>
                     <li><a href="/play.php">PLAY NOW!</a></li>
-                    <li><a href="/homepage.php">Home Page</a></li>
+                    <li><a href="/homepage.php">HOME</a></li>
 
                 </ul>
             </div>

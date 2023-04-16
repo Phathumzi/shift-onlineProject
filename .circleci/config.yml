@@ -24,3 +24,30 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:16.10
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run tests
+          command: npm test
+
+steps:
+  ... # Steps to build and test your application
+  - store_test_results:
+      path: test-results
+
+
+steps:
+  ... # Steps to build and test your application
+  - store_artifacts:
+      path: test-results
+      destination: junit
