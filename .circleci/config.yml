@@ -1,55 +1,25 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
-
-orbs:
-  coveralls: coveralls/coveralls@2.1.1
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+version: 2
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  build:
+    working_directory: ~/my-project
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+      - image: circleci/node:10-browsers
     steps:
       - checkout
+      - restore_cache:
+          key: my-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - save_cache:
+          key: my-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
-
-jobs:
-  build-and-test:
-    docker:
-      - image: cimg/node:16.10
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
+          name: Lint
+          command: npm run ng lint
       - run:
-          name: Run tests
-          command: npm test
-
-steps:
-  ... # Steps to build and test your application
-  - store_test_results:
-      path: test-results
-
-
-steps:
-  ... # Steps to build and test your application
-  - store_artifacts:
-      path: test-results
-      destination: junit
+          name: Unit Test
+          command: npm run ng test -- --watch=false --code-coverage
+      - run:
+          name: Coveralls
+          command: cat ./coverage/angular-hello-world/lcov.info  | ./node_modules/coveralls/bin/coveralls.js
