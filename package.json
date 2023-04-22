@@ -3,6 +3,25 @@
     "node": "^19.8.1"
   },
   "devDependencies": {
-    "coveralls": "^3.1.1"
-  }
+    "coveralls": "^3.1.1",
+    "jest": "^29.5.0"
+  },
+  "name": "shift-onlineproject",
+  "description": "we are creating and online gaming platform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phathumzi/shift-onlineProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phathumzi/shift-onlineProject/issues"
+  },
+  "homepage": "https://github.com/Phathumzi/shift-onlineProject#readme"
 }
